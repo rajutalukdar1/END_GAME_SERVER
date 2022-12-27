@@ -11,10 +11,11 @@ app.use(express.json());
 
 
 
-
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.d64dkmr.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.78yphzz.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 console.log(client);
+
+
 
 
 
@@ -22,4 +23,4 @@ app.get('/', async (req, res) => {
     res.send('SRJR server is running');
 })
 
-app.listen(port, () => console.log(`SRJR server is running ${port}`))
+app.listen(port, () => console.log(`SRJR server is running ${port}`));
