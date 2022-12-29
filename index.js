@@ -19,7 +19,8 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function run() {
     try {
         const srjrPostCollection = client.db('srjr').collection('srjrPost');
-
+        const srjrCommentCollection = client.db('srjr').collection('comment');
+        const srjrAboutCollection = client.db('srjr').collection('about');
 
 
         app.post('/srjrPost', async (req, res) => {
@@ -36,6 +37,29 @@ async function run() {
             const result = await cursor.toArray();
             res.send(result)
         })
+
+        app.post('/about', async (req, res) => {
+            const about = req.body;
+            // console.log(about);
+            const result = await srjrAboutCollection.insertOne(about);
+            console.log(result);
+            res.send(result);
+        })
+
+        app.post('/postcomment', async (req, res) => {
+            const comment = req.body;
+            // console.log(post);
+            const result = await srjrCommentCollection.insertOne(comment);
+            console.log(result);
+            res.send(result);
+        })
+        app.get('/allcomments', async (req, res) => {
+            const query = {}
+            const cursor = srjrCommentCollection.find(query);
+            const result = await cursor.toArray();
+            res.send(result)
+        })
+
         // app.get('/allPost', async (req, res) => {
         //     let query = {}
         //     if (req.query.email) {
