@@ -50,7 +50,7 @@ async function run() {
             const comment = req.body;
             // console.log(post);
             const result = await srjrCommentCollection.insertOne(comment);
-            console.log(result);
+            // console.log(result);
             res.send(result);
         })
         app.get('/allcomments', async (req, res) => {
